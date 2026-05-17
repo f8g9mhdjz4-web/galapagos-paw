@@ -31,10 +31,21 @@ type DnaItem = {
   title: string;
 };
 
+type LocalFocusItem = {
+  title: string;
+  text: string;
+};
+
+type FaqItem = {
+  question: string;
+  answer: string;
+};
+
 const navigation: NavItem[] = [
   { label: "Accueil", href: "#accueil" },
   { label: "Services", href: "#services" },
   { label: "À propos", href: "#apropos" },
+  { label: "Rennes", href: "#rennes" },
   { label: "Valeurs", href: "#valeurs" },
   { label: "Contact", href: "#contact" },
 ];
@@ -86,6 +97,53 @@ const dna: DnaItem[] = [
   { icon: "lotus", title: "Bien-être" },
   { icon: "wave", title: "Harmonie" },
   { icon: "paw", title: "Confiance" },
+];
+
+const localFocus: LocalFocusItem[] = [
+  {
+    title: "Rennes & alentours",
+    text: "Interventions à Rennes et autour, selon votre secteur, vos habitudes et les besoins de votre compagnon.",
+  },
+  {
+    title: "Chiens & chats",
+    text: "Garde d'animaux, visites à domicile et promenades pensées pour les routines sensibles comme pour les journées actives.",
+  },
+  {
+    title: "Présence bienveillante",
+    text: "Une approche douce, fiable et naturelle pour que votre animal reste apaisé, même pendant votre absence.",
+  },
+];
+
+const localChips = [
+  "Pet sitter à Rennes",
+  "Garde d'animaux",
+  "Visites à domicile",
+  "Promenades de chiens",
+  "Garde de chats",
+  "Rennes & alentours",
+];
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Proposez-vous un service de pet sitter à Rennes ?",
+    answer:
+      "Oui, Galápagos Paw propose un service de garde d'animaux à Rennes avec des visites à domicile, des promenades et une présence douce pour les chiens et les chats.",
+  },
+  {
+    question: "Les visites à domicile conviennent-elles aux chats ?",
+    answer:
+      "Oui, les visites à domicile sont idéales pour les chats qui préfèrent garder leurs repères, leur rythme et leur environnement habituel.",
+  },
+  {
+    question: "Pouvez-vous promener un chien régulièrement ?",
+    answer:
+      "Oui, les promenades peuvent être ponctuelles ou régulières, toujours adaptées à l'énergie, à l'âge et aux habitudes de votre chien.",
+  },
+  {
+    question: "Comment se passe le premier contact ?",
+    answer:
+      "Un premier échange permet de comprendre vos besoins, le tempérament de votre animal, votre secteur à Rennes et l'accompagnement le plus juste.",
+  },
 ];
 
 function Glyph({ icon }: { icon: IconName }) {
@@ -186,8 +244,58 @@ function Glyph({ icon }: { icon: IconName }) {
 }
 
 function App() {
+  const baseUrl = "https://galapagos-paw.vercel.app";
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "ProfessionalService"],
+        "@id": `${baseUrl}/#business`,
+        name: "Galápagos Paw",
+        description:
+          "Pet sitter à Rennes pour chiens et chats. Visites à domicile, promenades, garde douce et présence bienveillante.",
+        url: baseUrl,
+        image: [
+          `${baseUrl}/media/hero-main.jpg`,
+          `${baseUrl}/media/gallery-large.png`,
+          `${baseUrl}/media/contact-golden.png`,
+        ],
+        logo: `${baseUrl}/media/logo-symbol-black.png`,
+        telephone: "+33612345678",
+        email: "galapagos.paw@gmail.com",
+        areaServed: [
+          { "@type": "City", name: "Rennes" },
+          { "@type": "AdministrativeArea", name: "Ille-et-Vilaine" },
+        ],
+        serviceType: [
+          "Pet sitting",
+          "Garde d'animaux",
+          "Visites à domicile",
+          "Promenades de chiens",
+          "Garde de chats",
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${baseUrl}/#faq`,
+        mainEntity: faqItems.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      },
+    ],
+  };
+
   return (
     <div className="page-shell">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <div className="page-shell__left-ribbon" aria-hidden="true" />
       <div className="page-shell__paper" aria-hidden="true" />
       <div className="page-shell__glow" aria-hidden="true" />
@@ -247,7 +355,7 @@ function App() {
               </div>
             </div>
 
-            <h1>Douceur, nature et confiance.</h1>
+            <h1>Pet sitter à Rennes, avec douceur et confiance.</h1>
             <p className="hero-panel__lede">
               Garde douce, promenades, visites à domicile et bien-être animal à
               Rennes, dans un univers inspiré par les Galápagos.
@@ -342,6 +450,38 @@ function App() {
           </div>
         </section>
 
+        <section className="local-panel" id="rennes">
+          <div className="local-panel__intro">
+            <div>
+              <div className="micro-title">RENNES & ALENTOURS</div>
+              <h2>
+                Une garde d&apos;animaux pensée pour Rennes, les chiens, les
+                chats et leurs repères.
+              </h2>
+              <p>
+                Galápagos Paw accompagne les familles avec des visites à
+                domicile, des promenades de chiens et une présence calme à
+                Rennes et dans les environs, selon disponibilité.
+              </p>
+            </div>
+
+            <div className="local-panel__chips" aria-label="Services à Rennes">
+              {localChips.map((chip) => (
+                <span key={chip}>{chip}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="local-panel__grid">
+            {localFocus.map((item) => (
+              <article className="local-panel__card" key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="brand-grid">
           <div className="brand-grid__statement-row">
             <article className="brand-grid__statement brand-grid__statement--mission">
@@ -398,6 +538,23 @@ function App() {
             />
           </article>
         </section>
+
+        <section className="faq-panel" aria-labelledby="faq-title">
+          <div className="section-title">
+            <span className="section-title__line" />
+            <h2 id="faq-title">QUESTIONS FRÉQUENTES</h2>
+            <span className="section-title__line" />
+          </div>
+
+          <div className="faq-panel__grid">
+            {faqItems.map((item) => (
+              <article className="faq-panel__item" key={item.question}>
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+              </article>
+            ))}
+          </div>
+        </section>
       </main>
 
       <footer className="site-footer" id="contact">
@@ -415,10 +572,17 @@ function App() {
           Inspiré en Galápagos, pensé avec douceur.
         </p>
 
-        <div className="site-footer__contact">
-          <a href="mailto:galapagos.paw@gmail.com">galapagos.paw@gmail.com</a>
-          <a href="tel:+33612345678">07 78 17 83 69</a>
-          <span>Rennes &amp; alentours</span>
+        <div className="site-footer__meta">
+          <div className="site-footer__contact">
+            <a href="mailto:galapagos.paw@gmail.com">galapagos.paw@gmail.com</a>
+            <a href="tel:+33612345678">07 78 17 83 69</a>
+            <span>Rennes &amp; alentours</span>
+          </div>
+
+          <p className="site-footer__seo">
+            Pet sitter à Rennes pour chiens et chats, visites à domicile,
+            promenades et garde d&apos;animaux en douceur.
+          </p>
         </div>
       </footer>
     </div>
