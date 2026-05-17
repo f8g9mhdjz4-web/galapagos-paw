@@ -343,33 +343,54 @@ function App() {
         </section>
 
         <section className="brand-grid">
-          <article className="brand-grid__card brand-grid__card--mission">
-            <Glyph icon="mountain" />
-            <h3>MISSION</h3>
-            <p>
-              Offrir un accompagnement tranquille, respectueux et naturel.
-            </p>
-            <img
-              src="/media/hero-coast.png"
-              alt="Paysage côtier lié à l'univers Galápagos"
-            />
-          </article>
+          <div className="brand-grid__statement-row">
+            <article className="brand-grid__statement brand-grid__statement--mission">
+              <span className="brand-grid__statement-label">MISSION</span>
+              <p>Offrir un accompagnement tranquille, respectueux et naturel.</p>
+            </article>
 
-          <article className="brand-grid__card brand-grid__card--vision">
-            <div className="brand-grid__vision-top">
-              <Glyph icon="sun" />
-              <h3>VISION</h3>
-              <p>
-                Devenir une référence de bien-être animal.
-              </p>
-            </div>
-            <img
-              src="/media/galapagos-sealion.png"
-              alt="Otarie des Galápagos"
-            />
-          </article>
+            <article className="brand-grid__statement brand-grid__statement--vision">
+              <span className="brand-grid__statement-label">VISION</span>
+              <p>Devenir une référence de bien-être animal.</p>
+            </article>
+          </div>
 
-          <article className="brand-grid__card brand-grid__card--dna">
+          <article className="brand-grid__mosaic" aria-label="Univers Galápagos Paw">
+            <figure className="brand-grid__photo brand-grid__photo--care">
+              <img
+                src="/media/contact-golden.png"
+                alt="Carolina avec un chien dans un moment tendre"
+              />
+            </figure>
+
+            <figure className="brand-grid__photo brand-grid__photo--cats">
+              <img
+                src="/media/about-cats.jpg"
+                alt="Carolina avec deux chats dans une ambiance douce"
+              />
+            </figure>
+
+            <figure className="brand-grid__photo brand-grid__photo--seal">
+              <img
+                src="/media/galapagos-sealion.png"
+                alt="Otarie des Galápagos sur un ponton"
+              />
+            </figure>
+
+            <figure className="brand-grid__photo brand-grid__photo--journey">
+              <img
+                src="/media/gallery-large2.png"
+                alt="Carolina avec un golden retriever en voiture"
+              />
+            </figure>
+
+            <figure className="brand-grid__photo brand-grid__photo--iguana">
+              <img
+                src="/media/galapagos-iguana.png"
+                alt="Iguane marin des Galápagos sur la plage"
+              />
+            </figure>
+
             <img
               className="brand-grid__mark brand-grid__mark--soft"
               src="/media/logo-symbol-black.png"
@@ -396,7 +417,7 @@ function App() {
 
         <div className="site-footer__contact">
           <a href="mailto:galapagos.paw@gmail.com">galapagos.paw@gmail.com</a>
-          <a href="tel:+33612345678">06 12 34 56 78</a>
+          <a href="tel:+33612345678">07 78 17 83 69</a>
           <span>Rennes &amp; alentours</span>
         </div>
       </footer>

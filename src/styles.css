@@ -651,114 +651,139 @@ svg {
 
 .brand-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0;
-  padding: 12px 0 30px;
-}
-
-.brand-grid__card {
-  position: relative;
-  min-height: 420px;
-  padding: 36px 34px 34px;
+  gap: 22px;
+  padding: 12px 0 34px;
   border-top: 1px solid color-mix(in srgb, var(--bronze) 20%, transparent);
 }
 
-.brand-grid__card svg {
-  width: 42px;
-  height: 42px;
-  margin: 0 auto 14px;
-  color: var(--bronze);
+.brand-grid__statement-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 700px;
 }
 
-.brand-grid__card h3 {
-  text-align: center;
-  font-size: 2rem;
-  letter-spacing: 0.03em;
-  color: #213734;
+.brand-grid__statement {
+  padding: 18px 22px 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(168, 111, 47, 0.12);
+  box-shadow: var(--shadow);
 }
 
-.brand-grid__card--mission img,
-.brand-grid__card--vision img {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 138px;
-  object-fit: cover;
+.brand-grid__statement--mission {
+  background: rgba(255, 251, 245, 0.92);
 }
 
-.brand-grid__card--mission {
-  padding-bottom: 176px;
-}
-
-.brand-grid__card--vision {
-  overflow: hidden;
+.brand-grid__statement--vision {
   background: var(--green);
-  color: #f8f1e7;
 }
 
-.brand-grid__card--vision h3,
-.brand-grid__card--vision p,
-.brand-grid__card--vision svg {
-  position: relative;
-  z-index: 1;
+.brand-grid__statement-label {
+  display: inline-block;
+  color: var(--bronze);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.16em;
+}
+
+.brand-grid__statement p {
+  margin: 10px 0 0;
+  max-width: 250px;
+  font-family: "Fraunces", serif;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: #2a3d3b;
+}
+
+.brand-grid__statement--vision .brand-grid__statement-label,
+.brand-grid__statement--vision p {
   color: #f6ecdf;
 }
 
-.brand-grid__card--vision img {
-  opacity: 0.84;
-}
-
-.brand-grid__vision-top {
+.brand-grid__mosaic {
   position: relative;
-  z-index: 1;
-}
-
-.brand-grid__card--dna {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding-bottom: 170px;
-}
-
-.dna-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 26px 12px;
-  margin-top: 22px;
+  grid-template-columns: 1.06fr 0.82fr 0.92fr;
+  grid-template-rows: 210px 170px 190px;
+  gap: 16px;
+  min-height: 0;
 }
 
-.dna-grid__item {
-  display: grid;
-  gap: 10px;
-  justify-items: center;
-  text-align: center;
-  color: #223734;
+.brand-grid__photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(168, 111, 47, 0.14);
+  background: var(--paper-soft);
+  box-shadow: var(--shadow);
 }
 
-.dna-grid__item svg {
-  width: 34px;
-  height: 34px;
-  margin: 0;
-  color: var(--green);
+.brand-grid__photo img {
+  height: 100%;
+  object-fit: cover;
 }
 
-.dna-grid__item span {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.4rem;
+.brand-grid__photo--care {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  transform: rotate(-1.2deg);
+}
+
+.brand-grid__photo--cats {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  transform: translateY(14px);
+}
+
+.brand-grid__photo--seal {
+  grid-column: 3;
+  grid-row: 1;
+  transform: rotate(1.5deg);
+}
+
+.brand-grid__photo--journey {
+  grid-column: 3;
+  grid-row: 2;
+  transform: translateY(-6px);
+}
+
+.brand-grid__photo--iguana {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  transform: translateX(16px);
+}
+
+.brand-grid__photo--care img {
+  object-position: center;
+}
+
+.brand-grid__photo--cats img {
+  object-position: center top;
+}
+
+.brand-grid__photo--seal img {
+  object-position: center;
+}
+
+.brand-grid__photo--journey img {
+  object-position: center;
+}
+
+.brand-grid__photo--iguana img {
+  object-position: center;
 }
 
 .brand-grid__mark {
   position: absolute;
-  right: 20px;
-  bottom: 18px;
-  width: 120px;
-  opacity: 0.15;
+  right: 22px;
+  bottom: 24px;
+  z-index: 2;
+  width: 136px;
+  opacity: 0.08;
 }
 
 .brand-grid__mark--soft {
   filter: var(--bronze-filter);
-  opacity: 0.09;
 }
 
 .site-footer {
@@ -823,7 +848,6 @@ svg {
 @media (max-width: 1100px) {
   .hero-panel,
   .identity-strip,
-  .brand-grid,
   .site-footer {
     grid-template-columns: 1fr;
   }
@@ -854,8 +878,38 @@ svg {
     width: 240px;
   }
 
-  .brand-grid__card {
-    min-height: 340px;
+  .brand-grid__mosaic {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 220px 190px 190px 220px;
+  }
+
+  .brand-grid__photo--care {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .brand-grid__photo--cats {
+    grid-column: 2;
+    grid-row: 1;
+    transform: none;
+  }
+
+  .brand-grid__photo--seal {
+    grid-column: 2;
+    grid-row: 2;
+    transform: none;
+  }
+
+  .brand-grid__photo--journey {
+    grid-column: 1;
+    grid-row: 3;
+    transform: none;
+  }
+
+  .brand-grid__photo--iguana {
+    grid-column: 1 / span 2;
+    grid-row: 4;
+    transform: none;
   }
 }
 
@@ -936,6 +990,43 @@ svg {
   .service-orb {
     border-right: 0;
     padding-inline: 8px;
+  }
+
+  .brand-grid__statement-row {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-grid__statement {
+    padding: 16px 18px 18px;
+  }
+
+  .brand-grid__statement p {
+    max-width: none;
+  }
+
+  .brand-grid__mosaic {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 220px);
+  }
+
+  .brand-grid__photo--care,
+  .brand-grid__photo--cats,
+  .brand-grid__photo--seal,
+  .brand-grid__photo--journey,
+  .brand-grid__photo--iguana {
+    grid-column: auto;
+    grid-row: auto;
+    transform: none;
+  }
+
+  .brand-grid__photo {
+    border-radius: 24px;
+  }
+
+  .brand-grid__mark {
+    width: 110px;
+    right: 14px;
+    bottom: 14px;
   }
 
   .section-title {
